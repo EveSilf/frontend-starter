@@ -38,7 +38,7 @@ class Routes {
     return await Authing.create(username, password);
   }
 
-  @Router.post("/users/username")
+  @Router.patch("/users/username")
   async updateUsername(session: SessionDoc, username: string) {
     const user = Sessioning.getUser(session);
     return await Authing.updateUsername(user, username);
