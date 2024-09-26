@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
-import { BodyT, fetchy } from "@/utils/fetchy";
+import { fetchy } from "@/utils/fetchy";
 
 export const useUserStore = defineStore(
   "user",
@@ -40,8 +40,12 @@ export const useUserStore = defineStore(
       resetStore();
     };
 
-    const updateUser = async (patch: BodyT) => {
-      await fetchy("/api/users", "PATCH", { body: { update: patch } });
+    const updateUserUsername = async (username: string) => {
+      await fetchy("/api/users/username", "PATCH", { body: { username } });
+    };
+
+    const updateUserPassword = async (currentPassword: string, newPassword: string) => {
+      await fetchy("/api/users/password", "PATCH", { body: { currentPassword, newPassword } });
     };
 
     const deleteUser = async () => {
@@ -56,7 +60,8 @@ export const useUserStore = defineStore(
       loginUser,
       updateSession,
       logoutUser,
-      updateUser,
+      updateUserUsername,
+      updateUserPassword,
       deleteUser,
     };
   },

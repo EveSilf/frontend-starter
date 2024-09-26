@@ -3,20 +3,21 @@ import { useUserStore } from "@/stores/user";
 import { ref } from "vue";
 
 let username = ref("");
-let password = ref("");
+let currentPassword = ref("");
+let newPassword = ref("");
 
-const { updateUser, updateSession } = useUserStore();
+const { updateUserUsername, updateUserPassword, updateSession } = useUserStore();
 
 async function updateUsername() {
-  await updateUser({ username: username.value });
+  await updateUserUsername(username.value);
   await updateSession();
   username.value = "";
 }
 
 async function updatePassword() {
-  await updateUser({ password: password.value });
+  await updateUserPassword(currentPassword.value, newPassword.value);
   await updateSession();
-  password.value = "";
+  currentPassword.value = newPassword.value = "";
 }
 </script>
 
@@ -33,7 +34,8 @@ async function updatePassword() {
   <form @submit.prevent="updatePassword" class="pure-form">
     <fieldset>
       <legend>Change your password</legend>
-      <input type="password" placeholder="New password" v-model="password" required />
+      <input type="password" placeholder="Old password" v-model="currentPassword" required />
+      <input type="password" placeholder="New password" v-model="newPassword" required />
       <button type="submit" class="pure-button pure-button-primary">Update password</button>
     </fieldset>
   </form>
