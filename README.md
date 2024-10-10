@@ -54,6 +54,7 @@ Under the `client/` directory, you can find the frontend starter code and locate
 Key: `MONGO_SRV`, Value: `<your mongo connection string from .env file>`
 Note: only paste the right hand value after `=` (without `<` and `>`), i.e. `MONGO_SRV=<your mongo connection string>`
 4. Deploy!
+5. After deploying, go to `Settings`, then the `Deployment Protection` tab. Change `Vercel Authentication` from `Standard Protection` to `Only Preview Documents`. This will allow us to see your previous deployments when you submit your A5 alpha. 
 
 ## Understanding the Structure
 
