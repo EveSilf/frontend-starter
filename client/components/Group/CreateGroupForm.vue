@@ -31,7 +31,7 @@ const emptyForm = () => {
     <form @submit.prevent="createGroup(name)">
       <label class="group-name" for="name">group name:</label>
       <textarea id="name" v-model="name" class="input"></textarea>
-      <button type="submit" class="button pure-button-primary pure-button">Create Group.</button>
+      <button type="submit">Create Group.</button>
     </form>
   </div>
 </template>
